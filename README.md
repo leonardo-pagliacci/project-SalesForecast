@@ -70,4 +70,5 @@ This evaluation confirms the model's accuracy and effectiveness in predicting fu
 
 ## Conclusion
 
-The Iron Kaggle project illustrates a comprehensive approach to sales forecasting, from data preprocessing and exploration through to predictive modeling and evaluation. By carefully selecting features, employing a variety of modeling techniques, and rigorously assessing performance, the project achieves a high degree of accuracy in predicting future sales, demonstrating the potential of data science in retail sales forecasting.
+The Sales Forecast project illustrates a comprehensive approach to sales forecasting, from data preprocessing and exploration through to predictive modeling and evaluation. By carefully selecting features, employing a variety of modeling techniques, and rigorously assessing performance, the project achieves a high degree of accuracy in predicting future sales, demonstrating the potential of data science in retail sales forecasting.
+
