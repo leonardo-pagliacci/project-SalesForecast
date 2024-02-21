@@ -1,46 +1,73 @@
-# Project - Sales Forecast
+# Sales Forecast project
 
-This README file outlines the workflow for a project aimed at predicting sales using past sales data. The project involves several key steps, including data reading, cleaning, exploratory data analysis (EDA), feature engineering, and machine learning modeling. Each step is detailed below.
+This document provides a detailed workflow of the Iron Kaggle project, focusing on predicting future sales for a retail chain using historical sales data. The project follows a structured approach, incorporating data preprocessing, exploratory data analysis (EDA), feature engineering, machine learning modeling, and evaluation against actual sales. Specific libraries, file names, and steps are highlighted below.
 
-## Step 1: Reading the Data
+## Step 1: Importing Libraries and Reading Data
 
-The process begins by importing necessary libraries such as `pandas`, `numpy`, `seaborn`, `matplotlib`, and custom EDA functions. Two datasets are read into DataFrames: past sales data and future data for which sales predictions are required.
+The project starts with importing necessary Python libraries:
 
-## Step 2: Data Analysis
+- `pandas` and `numpy` for data manipulation,
+- `seaborn` and `matplotlib.pyplot` for visualization,
+- custom `eda_functions.py` for exploratory data analysis.
 
-Initial analysis includes viewing summaries of the datasets using custom functions like `standard_head()` and `analyze_data()`, which provide insights into the data's structure and content.
+Data is read from two Excel files:
 
-## Step 3: Cleaning Operations
+- **Past sales data:** `Past_Data.xlsx`, containing historical sales information.
+- **Future sales data:** `Future_data_without_label.xlsx`, intended for making sales predictions.
 
-Cleaning involves creating new columns based on the 'date' column (month, year, week, day) to facilitate detailed analysis. Additionally, records where stores are closed or no customers are present are filtered out as they are not useful for predicting sales.
+```python
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from eda_functions import standard_head, analyze_data
+```
+
+## Step 2: Initial Data Analysis
+
+Using `pandas`, the datasets are loaded and initially analyzed to understand their structure, using custom functions from `eda_functions.py` for summarizing and analyzing the data. This step is crucial for planning the preprocessing and modeling strategy.
+
+## Step 3: Data Cleaning and Preparation
+
+Data cleaning involves creating new date-related columns (`month`, `year`, `week`, `day`) using `pandas`' datetime functionality and filtering out rows irrelevant for modeling (e.g., days when stores were closed). This step ensures the data is in the right format for analysis and modeling.
 
 ## Step 4: Exploratory Data Analysis (EDA)
 
-EDA focuses on understanding sales trends, particularly how sales correlate with store open status, state holidays, promotions, and other features. This involves visualizing data distributions, identifying outliers, and analyzing feature correlations with sales.
+EDA is conducted to uncover sales trends and factors influencing sales, utilizing `seaborn` and `matplotlib` for visualization. Insights from this phase guide the feature engineering and modeling steps.
 
 ## Step 5: Feature Engineering
 
-Feature engineering enhances the dataset with new features, such as interactions between customers and promotions, binning customer numbers, and calculating average payments by customers. These engineered features aim to improve model accuracy by providing more relevant information for predicting sales.
+New features are created to enrich the models, including interactions between customers and promotions, categorization of customer numbers, and calculation of average payments by customers. This process leverages `numpy` and `pandas` for data manipulation, enhancing the dataset with information believed to improve model predictions.
 
 ## Step 6: Machine Learning Modeling
 
-Several machine learning models are trained and evaluated, including Linear Regression, Decision Tree, Random Forest, and CatBoost. Each model is assessed using metrics like Mean Squared Error (MSE), Mean Absolute Error (MAE), R-squared, and Root Mean Squared Error (RMSE). The best-performing model(s) based on these metrics are selected for final predictions.
+Several machine learning models are evaluated:
 
-### Final Model and Predictions
+- **Linear Regression**, **Decision Tree**, **Random Forest**, and **CatBoost** from `sklearn` and `catboost` libraries.
+- Models are trained on the historical data (`Past_Data.xlsx`) and evaluated using metrics like RMSE, MAE, and R-squared to select the best performer.
 
-After extensive experimentation, CatBoost emerges as the chosen model due to its performance. A significant step involves training individual CatBoost models for each store to capture unique sales patterns. Final predictions for future sales are made using these models.
+```python
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from catboost import CatBoostRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+```
 
-## Step 7: Output Preparation
+## Step 7: Preparing and Exporting Predictions
 
-Predictions are merged with the future data to align with the required output format. Predicted sales are filled for missing entries (where no predictions could be made), ensuring the final dataset is complete.
+The final model predictions are prepared for the future dataset (`Future_data_without_label.xlsx`) and exported to an Excel file named `predictions_4.xlsx`. This step involves merging predictions with the future dataset template and ensuring the format aligns with project requirements.
 
-## Step 8: Exporting Predictions
+## Step 8: Evaluation Against Actual Sales
 
-The final step involves exporting the predictions to an Excel file, making it ready for submission or further analysis.
+After appending the actual sales to the `predictions_4.xlsx` file, the model's predictions are evaluated against these actual figures using:
 
-## Key Takeaways
+- **RMSE:** 493
+- **MAE:** 306
+- **R-squared (R2):** 0.985
 
-- **Data Preprocessing**: Proper cleaning and preparation of data are crucial for effective modeling.
-- **Feature Engineering**: Creatively engineered features can significantly enhance model performance by providing more nuanced insights into the data.
-- **Model Selection and Evaluation**: Testing multiple models and rigorously evaluating their performance ensures the selection of the best model for the task.
-- **Individualized Modeling**: Training separate models for different segments of the data (e.g., by store) can improve accuracy by capturing unique trends and patterns.
+This evaluation confirms the model's accuracy and effectiveness in predicting future sales, showcasing the project's success in achieving its objective. The `pandas` library is utilized for data manipulation during this final evaluation phase, with metrics calculated using functions from the `sklearn.metrics` module.
+
+## Conclusion
+
+The Iron Kaggle project illustrates a comprehensive approach to sales forecasting, from data preprocessing and exploration through to predictive modeling and evaluation. By carefully selecting features, employing a variety of modeling techniques, and rigorously assessing performance, the project achieves a high degree of accuracy in predicting future sales, demonstrating the potential of data science in retail sales forecasting.
