@@ -1,4 +1,4 @@
-# Project Sales Forecast
+# Project - Sales Forecast
 
 This README file outlines the workflow for a project aimed at predicting sales using past sales data. The project involves several key steps, including data reading, cleaning, exploratory data analysis (EDA), feature engineering, and machine learning modeling. Each step is detailed below.
 
