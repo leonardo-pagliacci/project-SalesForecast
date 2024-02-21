@@ -60,7 +60,7 @@ The final model predictions are prepared for the future dataset (`Future_data_wi
 
 ## Step 8: Evaluation Against Actual Sales
 
-After appending the actual sales to the `predictions_4.xlsx` file, the model's predictions are evaluated against these actual figures using:
+After appending the actual sales to the `final_prediction_with_actual_metrics.xlsx` file, the model's predictions are evaluated against these actual figures using:
 
 - **RMSE:** 493
 - **MAE:** 306
